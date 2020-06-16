@@ -1,0 +1,20 @@
+{
+  "name": "effective-go-epub",
+  "version": "0.0.1",
+  "description": "Make an ePUB for the Effective Go book",
+  "main": "index.js",
+  "scripts": {
+    "build": "node index.js"
+  },
+  "keywords": [
+    "go",
+    "epub"
+  ],
+  "author": "Jim Tittsler <jimt@onjapan.net>",
+  "license": "BSD",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "epub-gen": "^0.1.0"
+  }
+}
