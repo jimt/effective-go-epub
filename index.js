@@ -9,25 +9,53 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const epub = require("epub-gen");
 
+// return array of chapters
+function getContent(text) {
+  let content = [];
+  let header = "";
+  let chapter = "";
+
+  const $ = cheerio.load(text);
+  const $page = $("main .container");
+  $page.find("a").each((i, e) => {
+    const href = $(e).attr("href");
+    if (href.substring(0, 2) == "//") {
+      $(e).attr("href", `https:${href}`);
+    } else if (href.substring(0, 1) == "/") {
+      $(e).attr("href", `https://golang.org${href}`);
+    }
+  });
+  $page.children().each((i, e) => {
+    const title = $(e).filter("h2").text().trim();
+    if (title) {
+      if (header) {
+        content.push({
+          title: header,
+          data: chapter,
+        });
+      }
+      header = title;
+    } else if (header) {
+      chapter += $.html($(e));
+    }
+  });
+  content.push({
+    title: header,
+    data: chapter,
+  });
+  return content;
+}
 axios
   .get("https://golang.org/doc/effective_go.html")
   .then((res) => res.data)
   .then((text) => {
-    const $ = cheerio.load(text);
-    let page = $("main").remove("#nav").html();
-    console.log(page);
     const options = {
       title: "Effective Go",
-      author: "The Go Project",
+      author: "The Go Authors",
       output: "./effective-go.epub",
-      content: [
-        {
-          title: "Effective Go",
-          data: page,
-        },
-      ],
+      content: getContent(text),
     };
 
     return new epub(options).promise;
   })
-  .then(() => console.log("done"));
+  .then(() => console.log("effective-go.epub created"));
