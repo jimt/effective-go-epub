@@ -58,6 +58,7 @@ function getContent($) {
         });
       }
       header = title;
+      chapter = "";
     } else if (header) {
       chapter += $.html($(e));
     }
