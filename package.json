@@ -12,11 +12,14 @@
   ],
   "author": "Jim Tittsler <jimt@onjapan.net>",
   "license": "MIT",
+  "engines": {
+    "node": ">=12"
+  }
   "repository": "github:jimt/effective-go-epub",
   "dependencies": {
     "axios": "^0.21.1",
-    "cheerio": "^1.0.0-rc.3",
+    "cheerio": "^1.0.0-rc.9",
     "epub-gen": "^0.1.0",
-    "sharp": "^0.27.0"
+    "sharp": "^0.27.2"
   }
 }
