@@ -17,9 +17,9 @@
   },
   "repository": "github:jimt/effective-go-epub",
   "dependencies": {
-    "axios": "^0.27.2",
-    "cheerio": "^1.0.0-rc.11",
+    "axios": "^1.2.3",
+    "cheerio": "^1.0.0-rc.12",
     "epub-gen": "^0.1.0",
-    "sharp": "^0.30.6"
+    "sharp": "^0.31.3"
   }
 }
