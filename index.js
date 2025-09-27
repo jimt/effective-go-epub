@@ -20,7 +20,7 @@ async function makeCover($) {
       // FIXME -- add text to cover image
       text.replace(
         ">",
-        '><text x="2" y="16" font-size="16" fill="#fff">Effective</text>'
+        '><text x="2" y="16" font-size="16" fill="#fff">Effective</text>',
       );
       try {
         fs.writeFileSync("cover.svg", text);
@@ -39,7 +39,7 @@ function getContent($) {
   let chapter = "";
   let coverFile = "";
 
-  const $page = $("main .container");
+  const $page = $("main article");
   $page.find("a").each((i, e) => {
     const href = $(e).attr("href");
     if (href.substring(0, 2) == "//") {
